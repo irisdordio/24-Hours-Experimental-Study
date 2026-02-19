@@ -1,4 +1,4 @@
-particlesJS("stars", {
+particlesJS("stars", {	
   "particles": {
     "number": { "value": 200, "density": { "enable": true, "value_area": 1000 } },
     "color": { "value": "#ffffff" },
@@ -23,12 +23,27 @@ particlesJS("stars", {
   "retina_detect": true
 });
 
+let targetX = 0, targetY = 0;
+let currentX = 0, currentY = 0;
+
 window.addEventListener('mousemove', e => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 20;
-  const y = (e.clientY / window.innerHeight - 0.5) * 20;
-  const stars = document.getElementById('stars');
-  stars.style.transform = `translate(${x}px, ${y}px)`;
+  targetX = (e.clientX / window.innerWidth - 0.5) * 100;
+  targetY = (e.clientY / window.innerHeight - 0.5) * 100;
 });
+
+function animateParallax() {
+  const dx = targetX - currentX;
+  const dy = targetY - currentY;
+
+  currentX += dx * 0.05;
+  currentY += dy * 0.05;
+
+  document.getElementById('stars').style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+  requestAnimationFrame(animateParallax);
+}
+
+animateParallax();
 
 function updateStarVisibility(lightness) {
   const stars = document.getElementById('stars');
