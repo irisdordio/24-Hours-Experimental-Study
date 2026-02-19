@@ -23,7 +23,6 @@ body {
   transition: opacity 2s ease;
 }
 
-/* Background */
 #gradient-bg {
   position: fixed;
   inset: 0;
@@ -31,9 +30,8 @@ body {
   transition: background 0.3s linear;
 }
 
-/* Sections */
 .section {
-    height: 100vh;
+  height: 100vh;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   display: flex;
